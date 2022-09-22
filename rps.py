@@ -48,6 +48,7 @@ def menu_start():
     root.withdraw()
     pc_pick=0
     pl_pick=0
+    rounds=0
     game_win = tk.Toplevel(root)
     game_win.geometry(game_size)
     game_win.title(f'Score 0-0. {gamemode}')
@@ -74,7 +75,7 @@ def menu_start():
     playagain_button = ttk.Button(game_win, text='Play again', style='mainb.TButton')
     close_button = ttk.Button(game_win, text='Back to menu', style='thib.TButton')
     overall_label = ttk.Label(game_win, font = ('Tahoma', 28))
-
+    cur_label = ttk.Label(game_win, text='ROUNDS PLAYED: 0', font=('Tahoma', 16))
 
     score_title.place(relx=0.44, rely=0.05)
     score_label.place(relx=0.464, rely=0.17)
@@ -88,6 +89,7 @@ def menu_start():
     paper_button.place(relwidth=0.057, relheight=0.1, relx=0.190, rely=0.8)
     scissors_button.place(relwidth=0.057, relheight=0.1, relx=0.280, rely=0.8)
     close_button.place(relwidth=0.12, relheight=0.07, relx=0.72, rely=0.81)
+    cur_label.place(relx=0.402, rely=0.01)
 
     
 
@@ -138,8 +140,9 @@ def menu_start():
 
     def game_rock(): 
         
-        nonlocal pl_score, pc_score, pl_pick, pc_pick
+        nonlocal pl_score, pc_score, pl_pick, pc_pick, rounds, gamemode
 
+        rounds+=1
         pl_pick = 0
         pl_image.configure(image=pl_rock)
         pl_image.image=pl_rock
@@ -166,6 +169,8 @@ def menu_start():
                 pl_score+=1
 
         score_label['text'] = f'{pl_score} : {pc_score}'
+        cur_label['text'] = f'ROUNDS PLAYED: {rounds}'
+        game_win.title(f'Score {pl_score}-{pc_score}. {gamemode}')
 
         if pl_score>9 and pc_score<=9:
 
@@ -184,8 +189,9 @@ def menu_start():
 
     def game_paper(): 
 
-        nonlocal pl_score, pc_score, pl_pick, pc_pick
+        nonlocal pl_score, pc_score, pl_pick, pc_pick, rounds, gamemode
 
+        rounds+=1
         pl_pick = 0
         pl_image.configure(image=pl_paper)
         pl_image.image=pl_paper
@@ -212,6 +218,8 @@ def menu_start():
             pl_score+=1
 
         score_label['text'] = f'{pl_score} : {pc_score}'
+        cur_label['text'] = f'ROUNDS PLAYED: {rounds}'
+        game_win.title(f'Score {pl_score}-{pc_score}. {gamemode}')
 
         if pl_score>9 and pc_score<=9:
 
@@ -230,8 +238,9 @@ def menu_start():
 
     def game_scissors(): 
         
-        nonlocal pl_score, pc_score, pl_pick, pc_pick
+        nonlocal pl_score, pc_score, pl_pick, pc_pick, rounds, gamemode
 
+        rounds+=1
         pl_pick = 0
         pl_image.configure(image=pl_scissors)
         pl_image.image=pl_scissors
@@ -258,6 +267,8 @@ def menu_start():
             pl_score+=1
 
         score_label['text'] = f'{pl_score} : {pc_score}'
+        cur_label['text'] = f'ROUNDS PLAYED: {rounds}'
+        game_win.title(f'Score {pl_score}-{pc_score}. {gamemode}')
 
         if pl_score>9 and pc_score<=9:
 
